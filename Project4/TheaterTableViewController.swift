@@ -22,101 +22,9 @@ class TheaterTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        get_data_from_url("http://theater-1104.appspot.com/theaters")
-        // Load the sample data.
-        //loadSampleTheater()
-        
-//        var theater_name: String
-//        // The HTTP POST Request
-//        let myUrl = NSURL(string:"http://theater-1104.appspot.com/theaters");
-//        let request = NSMutableURLRequest(URL:myUrl!);
-//        request.HTTPMethod = "GET";
-//        //        theater_name = "name=";
-//        //        theater_name += NameTextField.text;
-//        //        theater_name += "&chambers=";
-//        //        theater_name += ChambersNumber.text;
-//        //        println("Theater_name=\(theater_name)")
-//        //        //let postString = "name=testpost9&chambers=6";
-//        let postString = "";
-//        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
-//        
-//        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-//            data, response, error in
-//            
-//            if error != nil {
-//                println("error=\(error)")
-//                return
-//            }
-//            
-//            // print out response object
-//            println("******* response = \(response)")
-//            
-//            
-//            // print out response body
-//            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//            println("************ response data = \(responseString)")
-//            self.testTheater = []
-//            var err: NSError?
-//            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: &err) as? NSDictionary
-//            
-//            if let parseJSON = json {
-//                
-//                if let element: AnyObject = parseJSON["keys"] {
-//                    //println(element[0])
-//                    //print("someInts is of type [Int] with \(element.count) items.")
-//                    var i: Int
-//                    for (i=0; i < element.count ; i++){
-//                        //println(element[i])
-//                        if let elem = element[i] as? NSNumber {
-//                            let aString = elem.stringValue
-//                            self.testTheater += [Theater_Keys(Tkeys: aString)]
-//                            //println(aString)
-//                            println(self.testTheater[i].Tkeys)
-//                         }
-//                    }
-//                    
-//                }
-//                
-//                //var Theater_keys = [String]()
-//                //Theater_keys = parseJSON["keys"] as! [(String)]
-//                //print("someInts is of type [Int] with \(Theater_keys.count) items.")
-//                //                for key in Thearter_keys
-//                //                    println("key: \(Thearter_keys[0]!)")
-//                //println("Theatername: \(Theatername!)")
-//                //self.TestName.text = Theatername
-//                
-//                //                var NumChambers = parseJSON["chambers"] as? Int
-//                //                if let newNum = NumChambers {
-//                //                    println(newNum)
-//                //                    self.TestInt.text = String(newNum)
-//                //                }
-//                
-//            }
-        
-//        }
-//        
-//        task.resume()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.get_data_from_url("http://theater-1104.appspot.com/theaters")
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-//    func loadSampleTheater() {
-//        //let photo1 = UIImage(named: "images")!
-//        let Key1 = Theaters(Tkeys: "Caprese Salad")!
-//        
-//        //let photo2 = UIImage(named: "images")!
-//        let Key2 = Theaters(Tkeys: "new key")!
-//        
-//        //let photo3 = UIImage(named: "images")!
-//        let Key3 = Theaters(Tkeys: "new key2")!
-//        
-//        TheatersList += [Key1, Key2, Key3]
-//        
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -143,19 +51,20 @@ class TheaterTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TheatersListTableViewCell", forIndexPath: indexPath) as! UITableViewCell
         cell.textLabel?.text = TableData2[indexPath.row]
         return cell
-//        let cellIdentifier = "TheatersListTableViewCell"
-//        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TheatersListTableViewCell
-//        
-//        
-//        // Fetches the appropriate meal for the data source layout.
-//        let meal = self.testTheater[indexPath.row]
-//        
-//        cell.Tkey.text = "SomeText"//meal.Tkeys
-////        var TheaterCell : Theater_Keys
-////        TheaterCell = testTheater[indexPath.row]
-////        cell.Tkey.text = TheaterCell.Tkeys
-//        return cell
     }
+    
+    override func viewWillAppear(animated: Bool) {
+       
+        self.NewdataTable()
+        
+    }
+    func NewdataTable () {
+        TableData.removeAll()
+        TableData2.removeAll()
+        self.get_data_from_url("http://theater-1104.appspot.com/theaters")
+        
+    }
+    
     func get_data_from_url(url:String)
     {
         let httpMethod = "GET"
@@ -210,7 +119,7 @@ class TheaterTableViewController: UITableViewController {
                 }
             }
         }
-        do_table_refresh();
+        self.do_table_refresh();
     }
     func get_data_from_url2(url:String)
     {
@@ -268,17 +177,16 @@ class TheaterTableViewController: UITableViewController {
             }
             
         }
-        do_table_refresh();
+        self.do_table_refresh();
     }
     func do_table_refresh()
     {
         dispatch_async(dispatch_get_main_queue(), {
+            //self.get_data_from_url("http://theater-1104.appspot.com/theaters")
             self.tableView.reloadData()
             return
         })
     }
-    
-    
 
     /*
     // Override to support conditional editing of the table view.

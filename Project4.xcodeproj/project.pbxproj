@@ -20,6 +20,10 @@
 		9F61B0FE1BEABFBF0066662F /* Theaters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B0FC1BEABFBF0066662F /* Theaters.swift */; };
 		9F61B1091BEBDFB90066662F /* MovieTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B1081BEBDFB90066662F /* MovieTableController.swift */; };
 		9F61B10A1BEBDFB90066662F /* MovieTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B1081BEBDFB90066662F /* MovieTableController.swift */; };
+		9FC9FEDD1BF17A1500E79FB1 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC9FEDC1BF17A1500E79FB1 /* PhotoViewController.swift */; };
+		9FC9FEDF1BF17A4800E79FB1 /* ViewPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC9FEDE1BF17A4800E79FB1 /* ViewPhoto.swift */; };
+		9FC9FEE11BF186C800E79FB1 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC9FEE01BF186C800E79FB1 /* Photos.framework */; };
+		9FC9FEE31BF19A5800E79FB1 /* PhotoThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC9FEE21BF19A5800E79FB1 /* PhotoThumbnail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		9F61B0F81BEABCCB0066662F /* TheaterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterTableViewController.swift; sourceTree = "<group>"; };
 		9F61B0FC1BEABFBF0066662F /* Theaters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Theaters.swift; path = ../Theaters.swift; sourceTree = "<group>"; };
 		9F61B1081BEBDFB90066662F /* MovieTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableController.swift; sourceTree = "<group>"; };
+		9FC9FEDC1BF17A1500E79FB1 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		9FC9FEDE1BF17A4800E79FB1 /* ViewPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPhoto.swift; sourceTree = "<group>"; };
+		9FC9FEE01BF186C800E79FB1 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		9FC9FEE21BF19A5800E79FB1 /* PhotoThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoThumbnail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC9FEE11BF186C800E79FB1 /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +80,7 @@
 		9F61B0C61BE9A6DD0066662F = {
 			isa = PBXGroup;
 			children = (
+				9FC9FEE01BF186C800E79FB1 /* Photos.framework */,
 				9F61B0D11BE9A6DD0066662F /* Project4 */,
 				9F61B0E71BE9A6DD0066662F /* Project4Tests */,
 				9F61B0D01BE9A6DD0066662F /* Products */,
@@ -94,6 +104,9 @@
 				9F61B0D41BE9A6DD0066662F /* AppDelegate.swift */,
 				9F61B0D61BE9A6DD0066662F /* ViewController.swift */,
 				9F61B0D81BE9A6DD0066662F /* Main.storyboard */,
+				9FC9FEDC1BF17A1500E79FB1 /* PhotoViewController.swift */,
+				9FC9FEE21BF19A5800E79FB1 /* PhotoThumbnail.swift */,
+				9FC9FEDE1BF17A4800E79FB1 /* ViewPhoto.swift */,
 				9F61B0F81BEABCCB0066662F /* TheaterTableViewController.swift */,
 				9F61B1081BEBDFB90066662F /* MovieTableController.swift */,
 				9F61B0F41BEAB39C0066662F /* TheatersListTableViewCell.swift */,
@@ -234,8 +247,11 @@
 				9F61B1091BEBDFB90066662F /* MovieTableController.swift in Sources */,
 				9F61B0D71BE9A6DD0066662F /* ViewController.swift in Sources */,
 				9F61B0FD1BEABFBF0066662F /* Theaters.swift in Sources */,
+				9FC9FEDD1BF17A1500E79FB1 /* PhotoViewController.swift in Sources */,
 				9F61B0F91BEABCCB0066662F /* TheaterTableViewController.swift in Sources */,
 				9F61B0D51BE9A6DD0066662F /* AppDelegate.swift in Sources */,
+				9FC9FEE31BF19A5800E79FB1 /* PhotoThumbnail.swift in Sources */,
+				9FC9FEDF1BF17A4800E79FB1 /* ViewPhoto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +449,7 @@
 				9F61B0F01BE9A6DD0066662F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F61B0F11BE9A6DD0066662F /* Build configuration list for PBXNativeTarget "Project4Tests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +458,7 @@
 				9F61B0F31BE9A6DD0066662F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

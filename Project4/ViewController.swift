@@ -10,6 +10,8 @@ import UIKit
 
 var Tname : String = String()
 var Tcham : String = String()
+var TID: String = String()
+var TID2: String = String()
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -25,56 +27,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var NewKey: UILabel!
     
+    @IBOutlet weak var Del_ID: UITextField!
+    
+    @IBOutlet weak var Results: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-//        // Set Variables
-//        var TheaterName: String
-//        var chambers = 0
-//        
-//        // Handle the text field’s user input through delegate callbacks.
-//        NameTextField.delegate = self
-//
-//        // The HTTP POST Request
-//        let myUrl = NSURL(string:"http://theater-1104.appspot.com/theaters");
-//        let request = NSMutableURLRequest(URL:myUrl!);
-//        request.HTTPMethod = "POST";
-//        
-//        let postString = "name=Test2&chambers=5";
-//        
-//        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
-//        
-//        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-//            data, response, error in
-//            
-//            if error != nil {
-//                println("error=\(error)")
-//                return
-//            }
-//        
-//            // print out response object
-//            println("******* response = \(response)")
-//        
-//        
-//            // print out response body
-//            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//            println("************ response data = \(responseString)")
-//        
-//            var err: NSError?
-//            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: &err) as? NSDictionary
-//        
-//            if let parseJSON = json {
-//        
-//                var Theatername = parseJSON["name"] as? String
-//                println("Theatername: \(Theatername)")
-//        
-//            }
-//        }
-//        
-//        task.resume()
-        //Theater_Post()
         
     }
 
@@ -93,6 +51,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         TestName.text = textField.text
         Tname = TestName.text!
         Tcham = TestInt.text!
+        TID = textField.text
     }
     // Send a POST request to add new Theater
     func Theater_Post(){
@@ -107,6 +66,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         theater_name += NameTextField.text;
         theater_name += "&chambers=";
         theater_name += ChambersNumber.text;
+        theater_name += "&movies[]=";
+        theater_name += "5649391675244544"
         println("Theater_name=\(theater_name)")
         //let postString = "name=testpost9&chambers=6";
         let postString = theater_name;
@@ -163,12 +124,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let myUrl = NSURL(string:"http://theater-1104.appspot.com/theaters");
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod = "GET";
-//        theater_name = "name=";
-//        theater_name += NameTextField.text;
-//        theater_name += "&chambers=";
-//        theater_name += ChambersNumber.text;
-//        println("Theater_name=\(theater_name)")
-//        //let postString = "name=testpost9&chambers=6";
         let postString = "";
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
         
@@ -202,20 +157,44 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
                 
-                //var Theater_keys = [String]()
-                //Theater_keys = parseJSON["keys"] as! [(String)]
-                //print("someInts is of type [Int] with \(Theater_keys.count) items.")
-//                for key in Thearter_keys
-//                    println("key: \(Thearter_keys[0]!)")
-                //println("Theatername: \(Theatername!)")
-                //self.TestName.text = Theatername
-                
-//                var NumChambers = parseJSON["chambers"] as? Int
-//                if let newNum = NumChambers {
-//                    println(newNum)
-//                    self.TestInt.text = String(newNum)
-//                }
-                
+            }
+            
+        }
+        
+        task.resume()
+    }
+    // Send a POST request to add new Theater
+    func Theater_Del(){
+        // Handle the text field’s user input through delegate callbacks.
+        //NameTextField.delegate = self
+        var theater_name: String
+        // The HTTP POST Request
+        let myUrl = NSURL(string:"http://theater-1104.appspot.com/theaters/" + TID);
+        let request = NSMutableURLRequest(URL:myUrl!);
+        request.HTTPMethod = "DELETE";
+        let postString = "";
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if error != nil {
+                println("error=\(error)")
+                return
+            }
+            
+            // print out response object
+            println("******* response = \(response)")
+            
+            
+            // print out response body
+            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("************ response data = \(responseString)")
+            
+            if let Result = responseString as? String {
+                println("The result is: \(Result)")
+                //TID2 = Result
+                self.Results.text = Result
             }
             
         }
@@ -242,5 +221,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func GetNewTheater(sender: AnyObject) {
         Theater_GET()
     }
+    
+    @IBAction func Delete_Theater_Fun(sender: AnyObject) {
+        TID = Del_ID.text
+        //Results.text = TID
+        Theater_Del()
+        //Results.text = TID2
+        
+    }
+    
 }
 
